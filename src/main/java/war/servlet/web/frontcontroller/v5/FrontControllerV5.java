@@ -1,9 +1,7 @@
 package war.servlet.web.frontcontroller.v5;
 
-import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import war.servlet.web.frontcontroller.ModelView;
 import war.servlet.web.frontcontroller.MyView;
-import war.servlet.web.frontcontroller.v3.ControllerV3;
 import war.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
 import war.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
 import war.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
@@ -11,6 +9,7 @@ import war.servlet.web.frontcontroller.v4.controller.MemberFormControllerV4;
 import war.servlet.web.frontcontroller.v4.controller.MemberListControllerV4;
 import war.servlet.web.frontcontroller.v4.controller.MemberSaveControllerV4;
 import war.servlet.web.frontcontroller.v5.adapter.ControllerV3HandlerAdapter;
+import war.servlet.web.frontcontroller.v5.adapter.ControllerV4HandlerAdapter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.ObjDoubleConsumer;
 
 @WebServlet(name = "frontControllerV5",urlPatterns = "/front-controller/v5/*")
 public class FrontControllerV5 extends HttpServlet {
@@ -36,6 +34,7 @@ public class FrontControllerV5 extends HttpServlet {
     }
 
     private void initHandlerAdapter() {
+        handlerAdapters.add(new ControllerV4HandlerAdapter());
         handlerAdapters.add(new ControllerV3HandlerAdapter());
     }
 
